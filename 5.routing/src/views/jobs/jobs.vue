@@ -1,19 +1,27 @@
 <script setup>
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 
-const jobs= ref([
-      {title: 'UX Designer', id:1, details: 'bla'},
-      {title: 'Web Designer', id:2, details: 'bla2'},
-      {title: 'Vue Developer', id:3, details: 'bla3'},
-    ])
+const jobs= ref([])
+
+onMounted(() => {
+  fetch('http://localhost:3000/jobs')
+      .then(res => res.json())
+      .then(data => jobs.value = data)
+      .catch(err => console.log(err.message))
+})
 </script>
 
 <template>
+  <div v-if="jobs.length">
   <h1>Jobs</h1>
   <div v-for="job in jobs" :key="job.id" class="job">
-    <router-link :to='{name: "jobDetails", params: {id: job.id}}'>
+    <router-link :to='{name: "JobDetails", params: {id: job.id}}'>
       <h2>{{job.title}}</h2>
     </router-link>
+  </div>
+  </div>
+  <div v-else>
+    <p>Loading Jobs...</p>
   </div>
 </template>
 

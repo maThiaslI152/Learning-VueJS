@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import About from '../views/AboutView.vue'
 import Jobs from '../views/jobs/jobs.vue'
-import jobDetails from "@/views/jobs/jobDetails.vue";
+import JobDetails from "@/views/jobs/JobDetails.vue";
 import notFound from "@/views/notFound.vue";
 
 const routes = [
@@ -23,8 +23,8 @@ const routes = [
   },
   {
     path: '/jobs/:id',
-    name: 'jobDetails',
-    component: jobDetails,
+    name: 'JobDetails',
+    component: JobDetails,
     props: true
   },
     //redirect
